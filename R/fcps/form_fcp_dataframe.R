@@ -57,7 +57,7 @@ form_fcp_dataframe <- function(fcps){
       ob_string <- paste(ob_string, "]")
       ob_string <- paste(ob_string , ",")
 
-      l <- lapply(strsplit(as.character(df_grouped$Object_values[i]) , ","),as.numeric);
+      l <- lapply(strsplit(as.character(df_grouped$Object_keyss[i]) , ","),as.numeric);
       vec <- unlist(l)
       supp <- supp + as.integer(length(vec))
     }
