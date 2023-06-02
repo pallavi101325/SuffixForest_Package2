@@ -14,7 +14,7 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   df_sample <- read.csv(data1)
   number_table1 <- data.frame()
   print("helo")
-  src <- paste(path, "/SuffixForest_Package/R/form_number_table.R")
+  src <- paste(path, "/SuffixForest_Package2/R/form_number_table.R")
   src <- gsub("\\s", "",  src)
   source(src)
   number_table1 <- form_number_table(df_sample, min_supp)
@@ -24,21 +24,21 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   print(outputfile)
   write.csv(number_table1, file = outputfile )
 
-  src1 <- paste(path, "/SuffixForest_Package/R/replace.R")
+  src1 <- paste(path, "/SuffixForest_Package2/R/replace.R")
   src1 <- gsub("\\s", "",  src1)
   source(src1)
 
   df_sample1 <- data.frame()
   df_sample1<- replace(df_sample , number_table1)
 
-  src2 <- paste(path, "/SuffixForest_Package/R/make_sfds.R")
+  src2 <- paste(path, "/SuffixForest_Package2/R/make_sfds.R")
   src2 <- gsub("\\s", "",  src2)
   source(src2)
 
   SFDS <- hashmap()
   SFDS <- make_sfds(df_sample1)
 
-  src3 <- paste(path, "/SuffixForest_Package/R/forest/suffix_forest_build.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/forest/suffix_forest_build.R")
   src3 <- gsub("\\s", "",  src3)
 
   source(src3)
@@ -46,14 +46,14 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   forest <- suffix_forest_build(SFDS)
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/fcps/get_closed_patterns.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/fcps/get_closed_patterns.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
   FCP <- hashset()
   FCP <- get_closed_patterns(forest)
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/fcps/get_fcps.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/fcps/get_fcps.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
 
@@ -61,7 +61,7 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   h2 <- get_fcps(FCP)
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/fcps/form_fcp_dataframe.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/fcps/form_fcp_dataframe.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
 
@@ -73,7 +73,7 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   write.csv(fcp_dataframe, file = output_fcp)
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/generators/get_generators.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/generators/get_generators.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
 
@@ -91,7 +91,7 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   AR_PB_1<- hashset()
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/rules/generate_rules.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/rules/generate_rules.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
 
@@ -101,7 +101,7 @@ output_numberTable <- function(data1,path,min_supp,min_conf){
   print(length(AR_PB_1))
 
   src3 <- ""
-  src3 <- paste(path, "/SuffixForest_Package/R/rules/form_dataframe.R")
+  src3 <- paste(path, "/SuffixForest_Package2/R/rules/form_dataframe.R")
   src3 <- gsub("\\s", "",  src3)
   source(src3)
 
